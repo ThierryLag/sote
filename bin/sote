@@ -85,7 +85,7 @@ sote()
         ${G}-c, --clear                  ${W}Clear all the paths stored by sote. Ask for confirmation before acting.
     "
 
-    if [ ! $(which git) ]; then
+    if ! type git > /dev/null; then
         echo "${EMR}error: ${NONE}sote requires ${Y}git ${NONE}command." >&2
         return 1
     fi
@@ -94,7 +94,7 @@ sote()
     if [ ! -f $store ]; then echo "" > $store; fi
 
     # Show help if no args
-    if [ $# == 0 ] ; then echo -e "$usage${NONE}"; return; fi
+    if [ "$#" -eq 0 ]; then echo -e "$usage${NONE}"; return; fi
 
     # Commands
     action=$1
@@ -234,4 +234,6 @@ _sote_complete()
     fi
 }
 
-type complete 1>/dev/null && {complete -F _sote_complete sote; }
+if type complete 1>/dev/null; then 
+    complete -F _sote_complete sote
+fi

@@ -46,7 +46,7 @@ fi
 # -----------------------------------------------------------------------------
 sote() 
 {
-    local version="0.1.4"
+    local version="0.2.0"
     local store="$SOTE_STORE"
     
     local NONE="\033[0m"
@@ -136,12 +136,17 @@ sote()
             ;;
         "-l"|"--list")
             for i in $(git config --file $store --list) ; do
+                if [ "$BASH_SUBSHELL$ZSH_SUBSHELL" != "0" ]; then 
+                    i=${i//*=/}
+                    echo "$i"
+                else
                 i=${i//store./}
-                i=${i//=/ ${Y}›${NONE} }
+                    i=${i//=/ ${Y}›${NONE} }
 
-                [ -d $(echo $i | awk '{print $3}') ] \
-                    && echo -e "$C$i" \
-                    || echo -e "${R}${i} ${R}[NOT FOUND]${NONE}"
+                    [ -d $(echo $i | awk '{print $3}') ] \
+                        && echo -e "$C$i" \
+                        || echo -e "${R}${i} ${R}[NOT FOUND]${NONE}"
+                fi
             done
             ;;
         "-s"|"--show")

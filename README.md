@@ -44,7 +44,9 @@ sote [options] <name>
         -v, --version                Output the version number
         -l, --list                   Lists the paths stored by sote.
         -s, --show <name>            Shows the path corresponding to the given name.
-        -a, --add <name> [path]      Add the path to the store with the given name. If no path is given, use current path.
+        -p, --push <name>            Use `pushd` instead of `cd` when change folder.
+        -a, --add <name> [path]      Add the path to the store with the given name. If no path is given, use 
+        current path.
         -r, --remove <name>          Remove the path stored by sote at the given name.
         -c, --clear                  Clear all the paths stored by sote. Ask for confirmation before acting.
 ```
@@ -61,15 +63,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* **0.2.0**: Add "subshell" capabilities and pushd action (*18/10/18*)
 * **0.1.1**: Add an embeds install procedure (*09/09/14*)
 * **0.1.0**: Rewrite in bash, first release (*17/07/14*)
 * **0.0.1**: Starting project (*19/06/14*)
-
-### TODO
-
-* [ ] Check/Fix compatibility with
-    * [ ] Linux
-    * [ ] Windows
 
 ## License
 
